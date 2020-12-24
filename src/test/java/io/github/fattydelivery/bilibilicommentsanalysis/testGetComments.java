@@ -23,6 +23,9 @@ public class testGetComments {
         System.out.println(rule.getUrl());
         Document doc = RequestData.getXml(rule);
         GetComments.Xml2ArrayList(doc);
-        GetComments.Xml2Csv(doc, "F:\\_\\2020-2021-1\\10NIIT-Project\\bilibili-comments-analysis\\src\\main\\resources" + tempFileProperties.getCsvPath(), "list.csv");
+        GetComments.Xml2Csv(doc, "F:\\_\\2020-2021-1\\10NIIT-Project\\bilibili-comments-analysis\\src\\main\\resources"
+                + tempFileProperties.getCsvPath(), "list.csv");
+        GetComments.Xml2Txt(doc, "F:\\_\\2020-2021-1\\10NIIT-Project\\bilibili-comments-analysis\\src\\main\\resources"
+                + tempFileProperties.getCsvPath(), "list.txt");
     }
 }
