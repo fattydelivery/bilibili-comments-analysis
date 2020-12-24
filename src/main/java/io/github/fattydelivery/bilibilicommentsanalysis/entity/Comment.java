@@ -12,6 +12,7 @@ public class Comment {
     private int commentSize;
     private int commentColor;
     private int sendTimestamp;
+    private int poolType;
     private String senderUid;
     private Long commentDmId;
     private String commentText;
@@ -22,33 +23,61 @@ public class Comment {
         this.commentSize = 0;
         this.commentColor = 0;
         this.sendTimestamp = 0;
+        this.poolType = 0;
         this.senderUid = null;
         this.commentDmId = null;
         this.commentText = null;
     }
 
     public Comment(float appearanceTime, int commentType, int commentSize, int commentColor, int sendTimestamp,
-                   String senderUid, Long commentDmId, String commentText) {
+                   int poolType, String senderUid, Long commentDmId, String commentText) {
         this.appearanceTime = appearanceTime;
         this.commentType = commentType;
         this.commentSize = commentSize;
         this.commentColor = commentColor;
         this.sendTimestamp = sendTimestamp;
+        this.poolType = poolType;
         this.senderUid = senderUid;
         this.commentDmId = commentDmId;
         this.commentText = commentText;
     }
 
     public Comment(String appearanceTime, String commentType, String commentSize, String commentColor, String sendTimestamp,
-                   String senderUid, String commentDmId, String commentText) {
+                   String poolType, String senderUid, String commentDmId, String commentText) {
         this.appearanceTime = Float.parseFloat(appearanceTime);
         this.commentType = Integer.parseInt(commentType);
         this.commentSize = Integer.parseInt(commentSize);
         this.commentColor = Integer.parseInt(commentColor);
         this.sendTimestamp = Integer.parseInt(sendTimestamp);
+        this.poolType = Integer.parseInt(poolType);
         this.senderUid = senderUid;
         this.commentDmId = Long.parseLong(commentDmId);
         this.commentText = commentText;
+    }
+
+    public String toTxt() {
+        return appearanceTime + "\t" + commentType + "\t" + commentSize + "\t" + commentColor + "\t" + sendTimestamp +
+                "\t" + poolType + "\t" + senderUid + "\t" + commentDmId + "\t" + commentText;
+    }
+
+    public String toCsv() {
+        return appearanceTime + "," + commentType + "," + commentSize + "," + commentColor + "," + sendTimestamp +
+                "," + poolType + "," + senderUid + "," + commentDmId + "," + commentText;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "appearanceTime=" + appearanceTime +
+                ", commentType=" + commentType +
+                ", commentSize=" + commentSize +
+                ", commentColor=" + commentColor +
+                ", sendTimestamp=" + sendTimestamp +
+                ", poolType=" + poolType +
+                ", senderUid='" + senderUid + '\'' +
+                ", commentDmId=" + commentDmId +
+                ", commentText='" + commentText + '\'' +
+                '}';
     }
 
     public float getAppearanceTime() {
@@ -113,5 +142,9 @@ public class Comment {
 
     public void setCommentText(String commentText) {
         this.commentText = commentText;
+    }
+
+    public int getPoolType() {
+        return poolType;
     }
 }

@@ -1,9 +1,14 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.utils;
 
+import io.github.fattydelivery.bilibilicommentsanalysis.entity.Comment;
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,24 +19,68 @@ import java.util.List;
  * @create: 2020-12-24-16:06
  **/
 public class GetComments {
-    public static ArrayList<ArrayList<String> > Xml2ArrayList(Document doc) {
+    public static ArrayList<Comment> Xml2ArrayList(Document doc) {
         Element rootElement = doc.getRootElement();
-        //5.获取子节点
         List<Element> children = rootElement.getChildren();
+        ArrayList<Comment> comments = new ArrayList<>();
         for (Element child : children) {
-            if (child.getName().equals("d"));
+            if (!child.getName().equals("d")) continue;
             List<Attribute> attributes = child.getAttributes();
-            //打印属性
+            String text = child.getText();
+            String str[] = null;
             for (Attribute attr : attributes) {
-                System.out.println(attr.getName()+":"+attr.getValue());
+                str = attr.getValue().split(",");
             }
-            List<Element> childrenList = child.getChildren();
-            System.out.println("======获取子节点-start======");
-            for (Element o : childrenList) {
-                System.out.println("节点名:"+o.getName()+"---"+"节点值:"+o.getValue());
+            if (str.length != 8) {
+                System.out.println("error!!");
             }
-            System.out.println("======获取子节点-end======");
+            Comment comment = new Comment(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], text);
+            // System.out.println(comment.toString());
+            comments.add(comment);
         }
-        return null;
+        return comments;
+    }
+
+    public static void Xml2Csv(Document doc, String target, String fileName) {
+        Element rootElement = doc.getRootElement();
+        List<Element> children = rootElement.getChildren();
+        PrintWriter writer = null;
+        try {
+            File dir = new File(target);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            File outFile = new File(target + fileName);
+            if (!outFile.exists()) {
+                try {
+                    outFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            writer = new PrintWriter(outFile);
+            for (Element child : children) {
+                if (!child.getName().equals("d")) continue;
+                List<Attribute> attributes = child.getAttributes();
+                String text = child.getText();
+                text.replaceAll(",", " "); // 防止有小可爱发包含,的弹幕
+                String str[] = null;
+                for (Attribute attr : attributes) {
+                    str = attr.getValue().split(",");
+                }
+                if (str.length != 8) {
+                    System.out.println("error!!");
+                }
+                Comment comment = new Comment(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], text);
+                // System.out.println(comment.toString());
+                System.out.println(comment.toCsv());
+                writer.write(comment.toCsv() + "\n");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            writer.close();
+        }
     }
 }
