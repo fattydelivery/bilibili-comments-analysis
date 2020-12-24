@@ -18,11 +18,9 @@ public class BilibiliApiProperties {
     public BilibiliApiProperties() {
         Properties properties = new Properties();
         try {
-            // 使用ClassLoader加载properties配置文件生成对应的输入流
             InputStream in = BilibiliApiProperties.class.getClass().getResourceAsStream(this.filePath);
-            // 使用properties对象加载输入流
             properties.load(in);
-            //获取key对应的value值
+
             this.bvid2cid = properties.getProperty("com.bilibili.api.bvid2cid");
             this.getcomments = properties.getProperty("com.bilibili.api.getcomments");
         } catch (IOException e) {

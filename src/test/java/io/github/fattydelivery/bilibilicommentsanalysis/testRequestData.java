@@ -30,5 +30,10 @@ public class testRequestData {
         System.out.println(jsonarr.toString());
         int cid = jsonarr.getJSONObject(0).getInt("cid");
         System.out.println(cid);
+
+        rule = new Rule(bilibiliApiProperties.getGetcomments(), new String[] {"oid"},
+                new String[] {String.valueOf(cid)}, Rule.GET);
+        System.out.println(rule.getUrl());
+        System.out.println(RequestData.getXml(rule).toString());
     }
 }

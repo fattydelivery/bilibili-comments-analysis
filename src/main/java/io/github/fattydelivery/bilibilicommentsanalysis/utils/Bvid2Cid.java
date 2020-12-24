@@ -2,8 +2,6 @@ package io.github.fattydelivery.bilibilicommentsanalysis.utils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * @program:bilibili-comments-analysis
@@ -12,10 +10,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  * @create: 2020-12-23-21:45
  **/
 
-@EnableConfigurationProperties
 public class Bvid2Cid {
-
-
     public static String getcid(String bvid) {
         BilibiliApiProperties bilibiliApiProperties = new BilibiliApiProperties();
         // System.out.println(bilibiliApiProperties.getBvid2cid());

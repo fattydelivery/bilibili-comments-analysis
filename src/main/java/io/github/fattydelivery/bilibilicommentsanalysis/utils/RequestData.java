@@ -1,12 +1,15 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.utils;
 
-import com.sun.xml.internal.bind.v2.TODO;
+import org.jdom.Attribute;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
 import org.json.JSONObject;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
@@ -76,9 +79,36 @@ public class RequestData {
         return new JSONObject(jsonObject);
     }
 
-    // TODO: get comments list
-    public Object getXml(Rule rule) {
-        return null;
+    public static Document getXml(Rule rule) {
+        validateRule(rule);
+        String url = rule.getUrl();
+        String[] params = rule.getParams();
+        String[] values = rule.getValues();
+        int requestType = rule.getRequestMoethod();
+
+        String xml = "";
+        URL urls = null;
+
+        url = url + "?";
+        for (int i = 0; i < params.length; i++) {
+            if (i != 0) url = url + "&";
+            url = url + params[i] + "=" + values[i];
+        }
+        System.out.println(url);
+        url = "http://comment.bilibili.com/" + values[0] + ".xml";
+        System.out.println(url);
+        Document doc = null;
+        try {
+            urls = new URL(url);
+            String xmlstr = InflateDeflateUtil.inflate(urls);
+            StringReader reader = new StringReader(xmlstr.trim());
+            InputSource source = new InputSource(reader);
+            SAXBuilder saxB = new SAXBuilder();
+            doc = saxB.build(source);
+        } catch (IOException | JDOMException e) {
+            e.printStackTrace();
+        }
+        return doc;
     }
 
     /**
@@ -99,4 +129,15 @@ public class RequestData {
         }
     }
 
+    private static String replaceChar(String str) {
+        char[] chars = str.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == 0x9 || chars[i] == 0xA || chars[i] == 0xD || (chars[i] >= 0x20 && chars[i] <= 0xD7FF)
+                    || (chars[i] >= 0xE000 && chars[i] <= 0xFFFD) || (chars[i] >= 0x10000 && chars[i] <= 0x10FFFF)) {
+                continue;
+            }
+            chars[i] = ' ';
+        }
+        return new String(chars);
+    }
 }
