@@ -1,11 +1,7 @@
 package io.github.fattydelivery.bilibilicommentsanalysis;
 
 import io.github.fattydelivery.bilibilicommentsanalysis.utils.BilibiliApiProperties;
-import io.github.fattydelivery.bilibilicommentsanalysis.utils.InflateDeflateUtil;
-import io.github.fattydelivery.bilibilicommentsanalysis.utils.RequestData;
-import io.github.fattydelivery.bilibilicommentsanalysis.utils.Rule;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.InflateUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,7 +21,7 @@ public class testInflate {
         String url = "http://api.bilibili.com/x/v1/dm/list.so?oid=3307690";
         try {
             URL urls = new URL(url);
-            InflateDeflateUtil.inflate(urls);
+            InflateUtil.inflate(urls);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

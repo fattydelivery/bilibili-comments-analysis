@@ -1,13 +1,10 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.utils;
 
-import org.jdom.Attribute;
 import org.jdom.Document;
-import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.json.JSONObject;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -100,7 +97,7 @@ public class RequestData {
         Document doc = null;
         try {
             urls = new URL(url);
-            String xmlstr = InflateDeflateUtil.inflate(urls);
+            String xmlstr = InflateUtil.inflate(urls);
             StringReader reader = new StringReader(xmlstr.trim());
             InputSource source = new InputSource(reader);
             SAXBuilder saxB = new SAXBuilder();

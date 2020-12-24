@@ -11,7 +11,7 @@ import java.util.zip.Inflater;
  * @author: Jayce(Bingjie Yan)
  * @create: 2020-12-24-14:43
  **/
-public class InflateDeflateUtil {
+public class InflateUtil {
     public static String inflate(URL urls) {
         try {
             HttpURLConnection conn = (HttpURLConnection) urls.openConnection();
@@ -46,25 +46,4 @@ public class InflateDeflateUtil {
         }
         return null;
     }
-//
-//    public static void deflate(File src, File target) {
-//        FileInputStream fileInputStream;
-//        FileOutputStream fileOutputStream;
-//        DeflaterOutputStream deflaterOutputStream;
-//        try {
-//            fileInputStream = new FileInputStream(src);
-//            fileOutputStream = new FileOutputStream(target);
-//            deflaterOutputStream = new DeflaterOutputStream(fileOutputStream, new Deflater(8));
-//            byte[] b = new byte[1024];
-//            int len = 0;
-//            while ((len = fileInputStream.read(b)) != -1) {
-//                deflaterOutputStream.write(b, 0, len);
-//            }
-//            fileInputStream.close();
-//            deflaterOutputStream.close();
-//            fileOutputStream.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
