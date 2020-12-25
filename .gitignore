@@ -50,3 +50,4 @@ __pycache__
 .ipynb_checkpoints
 
 # path
+/logs/
