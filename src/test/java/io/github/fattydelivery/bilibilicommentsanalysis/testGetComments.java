@@ -1,9 +1,9 @@
 package io.github.fattydelivery.bilibilicommentsanalysis;
 
+import io.github.fattydelivery.bilibilicommentsanalysis.properties.BilibiliApiProperties;
+import io.github.fattydelivery.bilibilicommentsanalysis.properties.TempFileProperties;
 import io.github.fattydelivery.bilibilicommentsanalysis.utils.*;
 import org.jdom.Document;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  * @program:bilibili-comments-analysis

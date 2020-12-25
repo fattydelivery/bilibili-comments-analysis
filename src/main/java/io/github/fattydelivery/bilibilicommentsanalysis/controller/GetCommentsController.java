@@ -2,9 +2,9 @@ package io.github.fattydelivery.bilibilicommentsanalysis.controller;
 
 import com.alibaba.fastjson.JSON;
 import io.github.fattydelivery.bilibilicommentsanalysis.entity.Comment;
+import io.github.fattydelivery.bilibilicommentsanalysis.properties.BilibiliApiProperties;
 import io.github.fattydelivery.bilibilicommentsanalysis.utils.*;
 import org.jdom.Document;
-import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

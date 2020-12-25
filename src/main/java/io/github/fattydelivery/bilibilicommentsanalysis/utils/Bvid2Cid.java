@@ -1,5 +1,6 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.utils;
 
+import io.github.fattydelivery.bilibilicommentsanalysis.properties.BilibiliApiProperties;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

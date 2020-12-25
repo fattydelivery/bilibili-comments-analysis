@@ -1,13 +1,10 @@
 package io.github.fattydelivery.bilibilicommentsanalysis;
 
+import io.github.fattydelivery.bilibilicommentsanalysis.properties.BilibiliApiProperties;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import io.github.fattydelivery.bilibilicommentsanalysis.utils.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * @program:bilibili-comments-analysis

@@ -1,4 +1,4 @@
-package io.github.fattydelivery.bilibilicommentsanalysis.utils;
+package io.github.fattydelivery.bilibilicommentsanalysis.properties;
 
 import java.io.IOException;
 import java.io.InputStream;
