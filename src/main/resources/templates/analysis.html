@@ -8,13 +8,17 @@
     <meta name="author" content="FattyDelivery">
     <meta name="description" content="bilibili弹幕分析">
     <meta name="keywords" content="bilibili,弹幕,弹幕分析">
-    <link rel="icon" th:href="@{img/logo.png}"> <!-- sizes="196x196" -->
-    <link rel="shortcut icon" th:href="@{img/logo.png}">
-    <link rel="shortcut icon" th:href="@{img/logo.png}">
-    <link rel="apple-touch-icon-precomposed" th:href="@{img/logo.png}"/>
+    <link rel="icon" th:href="@{img/logo_square.png}"> <!-- sizes="196x196" -->
+    <link rel="shortcut icon" th:href="@{img/logo_square.png}">
+    <link rel="shortcut icon" th:href="@{img/logo_square.png}">
+    <link rel="apple-touch-icon-precomposed" th:href="@{img/logo_square.png}"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.min.css}"/>
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700&display=swap?subset=chinese-simplified">
+
+    <script type="text/javascript" th:src="@{js/jquery-3.4.1.js}"></script>
+    <script type="text/javascript" th:src="@{js/echarts.min.js}"></script>
+
     <script type="text/javascript">
         $(function () {
             $("#search-form-submit").click(function () {
@@ -38,26 +42,17 @@
 <div id="content">
     <div id="top-menu-list">
         <ul id="top-menu-ul">
-            <li class="selected"><a>首页</a></li>
+            <li><a href="/">首页</a></li>
             <li><a href="nav">导航</a></li>
             <li><a href="admin">管理</a></li>
             <li><a href="about">关于</a></li>
         </ul>
     </div>
-    <div id="logo"><a th:href="@{index.html}"><img th:src="@{img/logo.png}" alt="主页"> </a></div>
     <div id="site-main">
         <div id="search-bar">
             <div id="container">
                 <div id="headline-content">
-                    <form id="search-form" target="analysis">
-                        <input class="float-left" id="search-keyword" type=search autocomplete=off
-                               autofocus>
-                        <input id="search-form-submit" class="float-right" type="submit" value="GO!">
-                    </form>
-                    <div id="search-hot" style="display: none">
-                        <ul>
-                        </ul>
-                    </div>
+                    Coming Soon!
                 </div>
             </div>
         </div>
@@ -70,7 +65,7 @@
     </div>
 </div>
 </body>
-<script src="js/jsondata.js"></script>
-<script src="js/main.min.js"></script>
-<script src="js/menu.min.js"></script>
+<script th:src="@{js/jsondata.js}"></script>
+<script th:src="@{js/main.min.js}"></script>
+<script th:src="@{js/menu.min.js}"></script>
 </html>

@@ -13,7 +13,7 @@ Team:[FattyDelivery](https://github.com/fattydelivery)
     - [4.3 Data Analysis Requirement](#43-data-analysis-requirement)
     - [4.4 Data Visualization Requirement](#44-data-visualization-requirement)
 - [5 Flowchart](#5-flowchart)
-- [6 Version Update](#6-version-update)
+- [6 Changelog](#6-changelog)
     - [20201218 v0.0.1](#20201218-v001)
 
 <!-- /MarkdownTOC -->
@@ -118,7 +118,7 @@ Hotshot displays a graphical representation of a page's favorite areas and geogr
 ![](img/flowchart.png)
 
 
-## 6 Version Update
+## 6 Changelog
 
 ### 20201218 v0.0.1
 

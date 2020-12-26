@@ -13,7 +13,7 @@ README [ <a href="README.md">EN</a> | <a href="README_CN.md">CN</a> ]
 
 - [Software Requirements Specification](#software-requirements-specification)
 - [TODO](#todo)
-- [Version Update](#version-update)
+- [Changelog](#changelog)
     - [20201218 v0.0.1](#20201218-v001)
     - [20201224 v0.0.2](#20201224-v002)
 
@@ -26,7 +26,7 @@ SRS [ <a href="SRS.md">EN</a> | <a href="SRS_CN.md">CN</a> ]
 
 ## TODO
 
-## Version Update
+## Changelog
 
 ### 20201218 v0.0.1
 
