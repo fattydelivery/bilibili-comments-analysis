@@ -6,8 +6,14 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
+/**
+ * @program:HBaseToJava02
+ * @description
+ * @author: Bonnie(Wang nan)
+ * @create: 2020-12-27
+ **/
 public class getHeatMap {
 
     private static String time;
@@ -20,7 +26,9 @@ public class getHeatMap {
     }
 
     public getHeatMap() throws IOException {
-        Connection con = new HbaseConnection().getConnection();
+
+    Connection con = new HbaseConnection().getConnection();
+        Map<Integer, Object> tmp = new LinkedHashMap<>();
         Admin admin = con.getAdmin();
         time = "";
         num = "";
@@ -36,9 +44,25 @@ public class getHeatMap {
                                 .append(Bytes.toString(cell.getRow())).append("\t")
                                 .append(Bytes.toString(cell.getValue()));
                         String[] s = sb.toString().split("\t");
-                        time += s[0] + " ";
-                        num += s[1] + " ";
+                        tmp.put(Integer.parseInt(s[0]), Integer.parseInt(s[1].split(",")[1]));
                     }
+                }
+                if (tmp != null && !tmp.isEmpty()) {
+                    Set<Integer> set = tmp.keySet();
+                    Object[] obj = set.toArray();
+                    Arrays.sort(obj);
+                    int max = (int) obj[obj.length-1];
+                    for(int i=1; i<=max; i++){
+                        if(tmp.containsKey(i)){
+                            time+=i+" ";
+                            num+=tmp.get(i)+" ";
+                        }else{
+                            time+=i+" ";
+                            num+=0+" ";
+                        }
+                    }
+                    System.out.println("time: "+time);
+                    System.out.println("num: "+num);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
