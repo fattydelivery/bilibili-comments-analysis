@@ -15,23 +15,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{css/main.min.css}"/>
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700&display=swap?subset=chinese-simplified">
-    <script type="text/javascript">
-        $(function () {
-            $("#search-form-submit").click(function () {
-                var bvid = $("#search-keyword");
-                var msg = "";
-                if (bvid.val() === "") {
-                    msg = "bvid can not be empty!"
-                }
-
-                if (msg != "") {
-                    alert(msg)
-                } else {
-                    $("#search-form-submit").submit();
-                }
-            })
-        })
-    </script>
 </head>
 <body class="index">
 <div id="menu"><i></i></div>

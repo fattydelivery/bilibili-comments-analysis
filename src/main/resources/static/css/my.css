@@ -1,0 +1,45 @@
+#video-info {
+    text-align: center;
+    margin: 0;
+    padding: 0px 0 70px;
+}
+
+#video-info p {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#comments-list {
+    text-align: center;
+    margin: 0;
+    height: 200px;
+    scroll: auto;
+    border: 1px;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 0 0 70px;
+}
+
+#comments-table {
+    text-align: left;
+    width: 80%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+#analysis-wordcount {
+    text-align: center;
+    margin: 0;
+    padding: 0 0 70px;
+}
+
+#analysis-heatmap {
+    text-align: center;
+    margin: 0;
+    padding: 0 0 70px;
+}
+
+.my-title {
+    text-align: center;
+    margin: 0;
+}

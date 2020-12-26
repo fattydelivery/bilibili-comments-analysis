@@ -19,25 +19,65 @@
     <script type="text/javascript" th:src="@{js/jquery-3.4.1.js}"></script>
     <script type="text/javascript" th:src="@{js/echarts.min.js}"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            $("#search-form-submit").click(function () {
-                var bvid = $("#search-keyword");
-                var msg = "";
-                if (bvid.val() === "") {
-                    msg = "bvid can not be empty!"
-                }
+    <link rel="stylesheet" type="text/css" th:href="@{css/my.css}"/>
 
-                if (msg != "") {
-                    alert(msg)
-                } else {
-                    $("#search-form-submit").submit();
+    <script>
+        var t = {
+            getQueryString: function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null)
+                    return decodeURI(r[2]);
+                return null;
+            }
+        }
+
+        //调用
+        var bvid = t.getQueryString("bvid"); //bvid
+
+        $.ajax({
+            type: 'get',
+            url: '/getinfo',
+            data: {bvid: bvid},
+            dataType: 'json',
+            success: function (data) {
+                // alert(data.bvid)
+                // alert(data.cid)
+                var html_info = $("#video-info").html()
+                html_info += "<p>bvid: " + data.bvid + "</p>"
+                html_info += "<p>cid: " + data.cid + "</p>"
+                $("#video-info").html(html_info);
+            }
+        });
+
+        $.ajax({
+            type: 'get',
+            url: '/getcomments',
+            data: {bvid: bvid},
+            dataType: 'json',
+            success: function (data) {
+                // alert(data.bvid)
+                // alert(data.cid)
+                var html_table = $("#comments-list").html();
+                html_table += '<div id="comments-table">';
+                html_table += '<table>';
+                html_table += '<tbody>';
+                for(var p in data){ //遍历json对象的每个key/value对,p为key
+                    html_table += '<tr><td style="width: 10%;">' + p + '</td><td>' + data[p].commentText + '</td></tr>';
                 }
-            })
-        })
+                html_table += '</tbody>';
+                html_table += '</table>';
+                html_table += '</div>';
+
+                $("#comments-list").html(html_table);
+            }
+        });
+
     </script>
+
+
 </head>
-<body class="index">
+<body class="index" style="scroll: auto;">
 <div id="menu"><i></i></div>
 <div id="content">
     <div id="top-menu-list">
@@ -49,11 +89,18 @@
         </ul>
     </div>
     <div id="site-main">
-        <div id="search-bar">
-            <div id="container">
-                <div id="headline-content">
-                    Coming Soon!
-                </div>
+        <div id="container">
+            <p class="my-title" style="padding: 80px 0 0">Video Information</p>
+            <div id="video-info">
+            </div>
+            <p class="my-title">Comments List</p>
+            <div id="comments-list">
+            </div>
+            <p class="my-title">Heatmap</p>
+            <div id="analysis-heatmap">
+            </div>
+            <p class="my-title">WordCount</p>
+            <div id="analysis-wordcount">
             </div>
         </div>
     </div>
