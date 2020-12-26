@@ -17,7 +17,8 @@
           href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700&display=swap?subset=chinese-simplified">
 
     <script type="text/javascript" th:src="@{js/jquery-3.4.1.js}"></script>
-    <script type="text/javascript" th:src="@{js/echarts.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/echarts.js}"></script>
+    <script type="text/javascript" th:src="@{js/echarts-wordcloud.js}"></script>
 
     <link rel="stylesheet" type="text/css" th:href="@{css/my.css}"/>
 
@@ -30,7 +31,7 @@
                     return decodeURI(r[2]);
                 return null;
             }
-        }
+        };
 
         //调用
         var bvid = t.getQueryString("bvid"); //bvid
@@ -62,7 +63,7 @@
                 html_table += '<div id="comments-table">';
                 html_table += '<table>';
                 html_table += '<tbody>';
-                for(var p in data){ //遍历json对象的每个key/value对,p为key
+                for (var p in data) { //遍历json对象的每个key/value对,p为key
                     html_table += '<tr><td style="width: 10%;">' + p + '</td><td>' + data[p].commentText + '</td></tr>';
                 }
                 html_table += '</tbody>';
@@ -72,12 +73,11 @@
                 $("#comments-list").html(html_table);
             }
         });
-
     </script>
 
 
 </head>
-<body class="index" style="scroll: auto;">
+<body class="index" style="scroll: auto; overflow-x: auto; overflow-y: auto;">
 <div id="menu"><i></i></div>
 <div id="content">
     <div id="top-menu-list">
@@ -102,9 +102,74 @@
             <p class="my-title">WordCount</p>
             <div id="analysis-wordcount">
             </div>
+            <script>
+                var wordcountChart = echarts.init(document.getElementById('analysis-wordcount'));
+                var backgroundImage = 'data:image/png;base64,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'
+
+                $.ajax({
+                    type: 'get',
+                    url: '/wordcount',
+                    data: {bvid: bvid},
+                    dataType: 'json',
+                    success: function (data) {
+                        var chartdata = [];
+                        for (var p in data) {
+                            chartdata.push({"name": p, "value": parseInt(data[p])})
+                        }
+                        console.log(chartdata)
+                        var maskImage = new Image();
+                        maskImage.src = backgroundImage;
+                        wordcountChart.setOption({
+                            backgroundColor: '#fff',
+                            tooltip: {
+                                show: false
+                            },
+                            series: [{
+                                type: 'wordCloud',
+                                shape: 'circle',
+                                gridSize: 1,
+                                sizeRange: [12, 55],
+                                rotationRange: [-45, 0, 45, 90],
+                                // maskImage: maskImage,
+                                textStyle: {
+                                    normal: {
+                                        color: function () {
+                                            return 'rgb(' +
+                                                Math.round(Math.random() * 255) +
+                                                ', ' + Math.round(Math.random() * 255) +
+                                                ', ' + Math.round(Math.random() * 255) + ')'
+                                        }
+                                    }
+                                },
+                                left: 'center',
+                                top: 'center',
+                                width: '96%',
+                                height: '100%',
+                                right: null,
+                                bottom: null,
+                                data: chartdata,
+                            }]
+                        })
+                    }
+                });
+
+
+                var heatmapChart = echarts.init(document.getElementById('analysis-heatmap'));
+                $.ajax({
+                    type: 'get',
+                    url: '/heatmap',
+                    data: {bvid: bvid},
+                    dataType: 'json',
+                    success: function (data) {
+                        for (var p in data) {
+
+                        }
+                    }
+                });
+            </script>
         </div>
     </div>
-    <div id="foot">©2020-2021
+    <div id="foot" style="position: relative;">©2020-2021
         <a href="https://github.com/fattydelivery" target="_blank" class="out_link">FattyDelivery.</a> All rights
         reserved.
         <a href="https://github.com/fattydelivery" target="_blank" style="font-size: 12px;">

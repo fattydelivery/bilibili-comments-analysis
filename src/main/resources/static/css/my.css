@@ -1,7 +1,7 @@
 #video-info {
     text-align: center;
     margin: 0;
-    padding: 0px 0 70px;
+    padding: 0 0 70px;
 }
 
 #video-info p {
@@ -13,7 +13,6 @@
     text-align: center;
     margin: 0;
     height: 200px;
-    scroll: auto;
     border: 1px;
     overflow-x: auto;
     overflow-y: auto;
@@ -31,12 +30,16 @@
     text-align: center;
     margin: 0;
     padding: 0 0 70px;
+    width: 80%;
+    height: 500px;
 }
 
 #analysis-heatmap {
     text-align: center;
     margin: 0;
     padding: 0 0 70px;
+    width: 80%;
+    height: 500px;
 }
 
 .my-title {
