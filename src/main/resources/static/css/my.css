@@ -1,7 +1,7 @@
 #video-info {
     text-align: center;
     margin: 0;
-    padding: 0 0 70px;
+    padding: 0 0 40px;
 }
 
 #video-info p {
@@ -16,7 +16,7 @@
     border: 1px;
     overflow-x: auto;
     overflow-y: auto;
-    padding: 0 0 70px;
+    padding: 0 0 40px;
 }
 
 #comments-table {
@@ -28,21 +28,24 @@
 
 #analysis-wordcount {
     text-align: center;
-    margin: 0;
-    padding: 0 0 70px;
-    width: 80%;
+    padding: 0 0 40px;
+    width: 100%;
     height: 500px;
+    background: white;
+    margin: 0 auto;
 }
 
 #analysis-heatmap {
     text-align: center;
-    margin: 0;
-    padding: 0 0 70px;
-    width: 80%;
-    height: 500px;
+    padding: 0 0 40px;
+    width: 100%;
+    height: 300px;
+    background: white;
+    margin: 0 auto;
 }
+
 
 .my-title {
     text-align: center;
-    margin: 0;
+    margin: 0 auto;
 }
