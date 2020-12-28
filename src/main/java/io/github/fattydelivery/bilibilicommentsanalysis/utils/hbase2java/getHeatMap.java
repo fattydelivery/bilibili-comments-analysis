@@ -1,7 +1,5 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.utils.hbase2java;
 
-package com.niit.project;
-
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
