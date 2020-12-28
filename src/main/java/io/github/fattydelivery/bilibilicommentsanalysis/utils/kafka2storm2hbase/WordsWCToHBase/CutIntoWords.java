@@ -1,4 +1,4 @@
-package io.github.fattydelivery.bilibilicommentsanalysis.utils.kafka2storm2hbase.WordsWC;
+package io.github.fattydelivery.bilibilicommentsanalysis.utils.kafka2storm2hbase.WordsWCToHBase;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

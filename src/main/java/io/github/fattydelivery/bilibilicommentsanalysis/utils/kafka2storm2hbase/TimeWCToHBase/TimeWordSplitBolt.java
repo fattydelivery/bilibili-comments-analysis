@@ -1,6 +1,5 @@
-package io.github.fattydelivery.bilibilicommentsanalysis.utils.kafka2storm2hbase.TimeWC;
+package io.github.fattydelivery.bilibilicommentsanalysis.utils.kafka2storm2hbase.TimeWCToHBase;
 
-import clojure.lang.Compiler;
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;

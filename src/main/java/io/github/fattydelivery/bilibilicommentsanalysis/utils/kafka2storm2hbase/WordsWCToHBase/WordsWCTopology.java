@@ -1,21 +1,23 @@
-package io.github.fattydelivery.bilibilicommentsanalysis.utils.kafka2storm2hbase.TimeWC;
+package io.github.fattydelivery.bilibilicommentsanalysis.utils.kafka2storm2hbase.WordsWCToHBase;
 
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
-import org.apache.storm.generated.StormTopology;
+//import org.apache.storm.generated.StormTopology;
 import org.apache.storm.kafka.*;
 import org.apache.storm.spout.SchemeAsMultiScheme;
 import org.apache.storm.topology.TopologyBuilder;
-import org.apache.storm.tuple.Fields;
+
+import java.util.HashMap;
+import java.util.Map;
+//import org.apache.storm.tuple.Fields;
 
 /**
  * @program:BilibiliProject
  * @description:
  * @auther:滕畅
- * @create:2020-12-20 23:35
+ * @create:2020-12-23 23:03
  **/
-public class TimeWCTopology {
-
+public class WordsWCTopology {
     public static void main(String[] args) throws Exception {
         //1.创建Topology的构建器
         TopologyBuilder topologyBuilder = new TopologyBuilder();
@@ -32,7 +34,7 @@ public class TimeWCTopology {
         // 第二个参数topic是该Spout订阅的topic名称
         // 第三个参数zkRoot是存储消费的offset(存储在ZK中了),当该topology故障重启后会将故障期间未消费的message继续消费而不会丢失(可配置)
         // 第四个参数id是当前spout的唯一标识
-        SpoutConfig spoutConfig = new SpoutConfig(brokerHosts, "project", "/project", "timewc");
+        SpoutConfig spoutConfig = new SpoutConfig(brokerHosts, "project", "/kafka", "timewc");
 
         // 定义kafkaSpout如何解析数据,这里是将kafka的producer send的数据放入到String
         // 类型的str变量中输出,这个str是StringSchema定义的变量名称
@@ -41,18 +43,21 @@ public class TimeWCTopology {
         // 设置spout
         topologyBuilder.setSpout("kafkaSpout", new KafkaSpout(spoutConfig));
         // 设置bolt
-        topologyBuilder.setBolt("TimeWordSplitBolt", new TimeWordSplitBolt()).shuffleGrouping("kafkaSpout");
+        topologyBuilder.setBolt("WordSplitBolt", new WordsSplitBolt()).shuffleGrouping("kafkaSpout");
         // 设置bolt
-        topologyBuilder.setBolt("TimeWCBolt", new TimeWCBolt()).fieldsGrouping("TimeWordSplitBolt", new Fields("word"));
+        topologyBuilder.setBolt("WordsWCBolt", new WordsWCBolt()).shuffleGrouping("WordSplitBolt");
+        // 设置bolt
+        topologyBuilder.setBolt("HBaseBolt",  new WordsHBaseBolt()).shuffleGrouping("WordsWCBolt");
 
-        //启动Topology
-        Config conf = new Config();
-        //创建一个topology
-        StormTopology topology = topologyBuilder.createTopology();
         //本地模式启动集群
         LocalCluster localCluster = new LocalCluster();
-        localCluster.submitTopology("TimeWCTopology", conf, topology);
+        //启动Topology
+        Config conf = new Config();
+
+        Map<String, Object> hbaseConf = new HashMap<String, Object>();
+        hbaseConf.put("hbase.rootdir","hdfs://hadoop000:9000/hbase");
+        hbaseConf.put("hbase.zookeeper.quorum", "hadoop000:2181");
+        conf.put("hbase.conf",hbaseConf);
+        localCluster.submitTopology("word-kafka-storm-hbase", conf, topologyBuilder.createTopology());
     }
 }
-
-
