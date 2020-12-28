@@ -14,6 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @program:HBaseToJava02
+ * @description
+ * @author: Bonnie(Wang nan)
+ * @create: 2020-12-25
+ **/
 public class HbaseConnection {
 
     Connection con;
