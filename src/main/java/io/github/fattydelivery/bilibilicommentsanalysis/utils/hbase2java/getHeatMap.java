@@ -1,5 +1,7 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.utils.hbase2java;
 
+package com.niit.project;
+
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
@@ -26,7 +28,6 @@ public class getHeatMap {
     }
 
     public getHeatMap() throws IOException {
-
     Connection con = new HbaseConnection().getConnection();
         Map<Integer, Object> tmp = new LinkedHashMap<>();
         Admin admin = con.getAdmin();
@@ -44,7 +45,7 @@ public class getHeatMap {
                                 .append(Bytes.toString(cell.getRow())).append("\t")
                                 .append(Bytes.toString(cell.getValue()));
                         String[] s = sb.toString().split("\t");
-                        tmp.put(Integer.parseInt(s[0]), Integer.parseInt(s[1].split(",")[1]));
+                        tmp.put(Integer.parseInt(s[0]), Integer.parseInt(s[1]));
                     }
                 }
                 if (tmp != null && !tmp.isEmpty()) {
@@ -70,3 +71,4 @@ public class getHeatMap {
         }
     }
 }
+
