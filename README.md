@@ -3,9 +3,9 @@
 Team: <a href="https://github.com/fattydelivery">FattyDelivery</a>
 
 - <a href="https://github.com/beiyuouo">Jayce(Bingjie Yan)</a>
-- Bonnie(Nan Wang)
-- Krystal(Chang Teng)
-- Daniel(Cong Niu)
+- <a href="https://github.com/Lannaie">Bonnie(Nan Wang)</a>
+- <a href="https://github.com/hnutc">Krystal(Chang Teng)</a>
+- <a href="https://github.com/ibrothercow">Daniel(Cong Niu)</a>
 
 README [ <a href="README.md">EN</a> | <a href="README_CN.md">CN</a> ]
 

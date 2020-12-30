@@ -1,7 +1,7 @@
 package io.github.fattydelivery.bilibilicommentsanalysis;
 
 import io.github.fattydelivery.bilibilicommentsanalysis.properties.BilibiliApiProperties;
-import io.github.fattydelivery.bilibilicommentsanalysis.utils.InflateUtil;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.InflateUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;

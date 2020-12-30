@@ -2,7 +2,10 @@ package io.github.fattydelivery.bilibilicommentsanalysis;
 
 import io.github.fattydelivery.bilibilicommentsanalysis.properties.BilibiliApiProperties;
 import io.github.fattydelivery.bilibilicommentsanalysis.properties.TempFileProperties;
-import io.github.fattydelivery.bilibilicommentsanalysis.utils.*;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.Bvid2Cid;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.GetComments;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.RequestData;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.Rule;
 import org.jdom.Document;
 
 /**

@@ -1,6 +1,6 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.controller;
 
-import io.github.fattydelivery.bilibilicommentsanalysis.utils.Bvid2Cid;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.Bvid2Cid;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

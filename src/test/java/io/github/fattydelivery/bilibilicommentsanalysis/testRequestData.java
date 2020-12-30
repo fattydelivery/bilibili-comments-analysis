@@ -1,10 +1,11 @@
 package io.github.fattydelivery.bilibilicommentsanalysis;
 
 import io.github.fattydelivery.bilibilicommentsanalysis.properties.BilibiliApiProperties;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.RequestData;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.Rule;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import io.github.fattydelivery.bilibilicommentsanalysis.utils.*;
 
 /**
  * @program:bilibili-comments-analysis

@@ -1,6 +1,6 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.entity;
 
-import io.github.fattydelivery.bilibilicommentsanalysis.utils.Bvid2Cid;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.Bvid2Cid;
 
 /**
  * @program:bilibili-comments-analysis
