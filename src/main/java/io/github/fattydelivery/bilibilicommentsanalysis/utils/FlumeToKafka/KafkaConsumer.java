@@ -1,5 +1,6 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.utils.FlumeToKafka;
 
+import io.github.fattydelivery.bilibilicommentsanalysis.properties.PropertiesUtil;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -14,7 +15,7 @@ import java.util.Properties;
  * @create:2020-12-24 20:18
  **/
 public class KafkaConsumer {
-    public static void main(String[] args) {
+    public static void Consumer() {
 
         //1.创建消费者配置信息
         Properties properties = new Properties();
@@ -22,7 +23,7 @@ public class KafkaConsumer {
         //2.给配置信息赋值
 
         //连接的集群
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "hadoop000:9092,hadoop000:9093,hadoop000:9094");
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, PropertiesUtil.getProperty("kafka.cluster"));
         //开启自动提交
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         //自动提交的延时
@@ -33,13 +34,13 @@ public class KafkaConsumer {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
         //消费者组
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "bigdata");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, PropertiesUtil.getProperty("kafka.customer.groupId"));
 
         //创建消费者
         org.apache.kafka.clients.consumer.KafkaConsumer<String, String> consumer = new org.apache.kafka.clients.consumer.KafkaConsumer<>(properties);
 
         //订阅主题
-        consumer.subscribe(Arrays.asList("project"));
+        consumer.subscribe(Arrays.asList(PropertiesUtil.getProperty("kafka.topic.name")));
 
         //获取数据
         while (true) {

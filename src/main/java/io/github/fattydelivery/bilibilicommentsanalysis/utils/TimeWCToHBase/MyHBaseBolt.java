@@ -7,6 +7,7 @@ package io.github.fattydelivery.bilibilicommentsanalysis.utils.TimeWCToHBase;
  * @create:2020-12-27 23:30
  **/
 
+import io.github.fattydelivery.bilibilicommentsanalysis.properties.PropertiesUtil;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
@@ -30,12 +31,12 @@ public class MyHBaseBolt implements IRichBolt {
         this.collector = collector;
 
         Configuration conf = HBaseConfiguration.create();
-        conf.set("hbase.rootdir", "hdfs://hadoop000:9000/hbase");
+        conf.set("hbase.rootdir", PropertiesUtil.getProperty("hbase.rootdir"));
         // the node of zookeeper
-        conf.set("hbase.zookeeper.quorum", "hadoop000:2181");
+        conf.set("hbase.zookeeper.quorum", PropertiesUtil.getProperty("hbase.zookeeper.quorum"));
         try {
             Connection conn = ConnectionFactory.createConnection(conf);
-            TableName tableName = TableName.valueOf("TimeWC");
+            TableName tableName = TableName.valueOf(PropertiesUtil.getProperty("hbase.table.wordcount.name"));
             tb = conn.getTable(tableName);
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,7 +48,7 @@ public class MyHBaseBolt implements IRichBolt {
         String count = input.getString(1);
         byte[] row = Bytes.toBytes(time);
         Put put = new Put(row);
-        put.addColumn(Bytes.toBytes("cf"), Bytes.toBytes("count"), Bytes.toBytes(count));
+        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.wordcount.name.cf")), Bytes.toBytes("count"), Bytes.toBytes(count));
         try {
             tb.put(put);
         } catch (Exception e) {

@@ -1,5 +1,6 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.utils.WordsWCToHBase;
 
+import io.github.fattydelivery.bilibilicommentsanalysis.properties.PropertiesUtil;
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
 //import org.apache.storm.generated.StormTopology;
@@ -18,7 +19,7 @@ import java.util.Map;
  * @create:2020-12-23 23:03
  **/
 public class WordsWCTopology {
-    public static void main(String[] args) throws Exception {
+    public static void WordsTopology() throws Exception {
         //1.创建Topology的构建器
         TopologyBuilder topologyBuilder = new TopologyBuilder();
 
@@ -26,7 +27,7 @@ public class WordsWCTopology {
         // 要注意这里的第二个参数brokerZkPath要和kafka中的server.properties中配置的zookeeper.connect对应
         // 因为这里是需要在zookeeper中找到brokers znode
         // 默认kafka的brokers znode是存储在zookeeper根目录下
-        BrokerHosts brokerHosts = new ZkHosts("hadoop000:2181,hadoop000:2182,hadoop000:2183",
+        BrokerHosts brokerHosts = new ZkHosts(PropertiesUtil.getProperty("storm.broker.cluster"),
                 "/kafka/brokers");
 
         // 定义spoutConfig
@@ -34,7 +35,7 @@ public class WordsWCTopology {
         // 第二个参数topic是该Spout订阅的topic名称
         // 第三个参数zkRoot是存储消费的offset(存储在ZK中了),当该topology故障重启后会将故障期间未消费的message继续消费而不会丢失(可配置)
         // 第四个参数id是当前spout的唯一标识
-        SpoutConfig spoutConfig = new SpoutConfig(brokerHosts, "project", "/kafka", "timewc");
+        SpoutConfig spoutConfig = new SpoutConfig(brokerHosts, PropertiesUtil.getProperty("kafka.topic.name"), "/kafka", "timewc");
 
         // 定义kafkaSpout如何解析数据,这里是将kafka的producer send的数据放入到String
         // 类型的str变量中输出,这个str是StringSchema定义的变量名称
@@ -55,8 +56,8 @@ public class WordsWCTopology {
         Config conf = new Config();
 
         Map<String, Object> hbaseConf = new HashMap<String, Object>();
-        hbaseConf.put("hbase.rootdir", "hdfs://hadoop000:9000/hbase");
-        hbaseConf.put("hbase.zookeeper.quorum", "hadoop000:2181");
+        hbaseConf.put("hbase.rootdir",PropertiesUtil.getProperty("hbase.rootdir"));
+        hbaseConf.put("hbase.zookeeper.quorum",PropertiesUtil.getProperty("hbase.zookeeper.quorum"));
         conf.put("hbase.conf", hbaseConf);
         localCluster.submitTopology("word-kafka-storm-hbase", conf, topologyBuilder.createTopology());
     }

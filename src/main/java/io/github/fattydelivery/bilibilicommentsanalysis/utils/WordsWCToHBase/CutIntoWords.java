@@ -22,7 +22,7 @@ public class CutIntoWords {
             System.out.println("开始初始化词典");
             int max = 3;
 //            int count=0;
-            List<String> lines = Files.readAllLines(Paths.get("D:\\IDEA\\projects\\dic.txt"), Charset.forName("utf-8"));
+            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/dic.txt"), Charset.forName("utf-8"));
             for (String line : lines) {
                 DIC.add(line);
 //                count++;
@@ -37,11 +37,7 @@ public class CutIntoWords {
             System.err.println("词典装载失败:" + ex.getMessage());
         }
     }
-
-    //    public static void main(String[] args){
-//        String text = "在普通的太阳系有颗普通的地球，普通的地球上有台普通的电脑，普通的电脑前有个大帅逼";
-//        System.out.println(seg(text));
-//    }
+    
     public static List<String> seg(String text) {
         List<String> result = new ArrayList<>();
         while (text.length() > 0) {
