@@ -28,7 +28,7 @@ public class GetHeatMap {
         return json.toString();
     }
 
-    public GetHeatMap() {
+    public GetHeatMap(String bvid) {
         Connection con = null;
         try {
             con = new HbaseConnection().getConnection();

@@ -26,12 +26,6 @@ public class GetWordCloud {
     private ArrayList<Integer> valueArr;
 
     public String getKV() {
-        /*
-        String res = "";
-        if (kv.length()>0) res = kv.substring(0, kv.length() - 1);
-        else res = "{}";
-         */
-        // System.out.println(res);
         JSONObject json = new JSONObject();
         for (int i=0; i<keyArr.size(); i++) {
             json.put(keyArr.get(i), valueArr.get(i));
@@ -39,7 +33,7 @@ public class GetWordCloud {
         return json.toString();
     }
 
-    public GetWordCloud() {
+    public GetWordCloud(String bvid) {
         Connection con = null;
         try {
             con = new HbaseConnection().getConnection();
