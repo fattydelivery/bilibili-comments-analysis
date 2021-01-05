@@ -39,7 +39,7 @@ Front-end: Tomcat, Springboot, Ajax
 
 Database: MySQL 8.0, HBase 1.2.2
 
-Data Analysis: Kafka, Storm, Zookeeper
+Data Analysis: Kafka 2.6.0, Storm 2.1.0, Zookeeper 3.4.14, Hadoop 2.7.3
 
 Teamwork: git, shimo
 

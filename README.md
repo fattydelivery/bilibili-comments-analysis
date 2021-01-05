@@ -24,15 +24,30 @@ README [ <a href="README.md">EN</a> | <a href="README_CN.md">CN</a> ]
 
 SRS [ <a href="SRS.md">EN</a> | <a href="SRS_CN.md">CN</a> ]
 
+## MySQL
+
+`resource/sql/sql.sql`
+
+
+## HBASE
+
+```
+CREATE ''
+```
+
+
+
 ## TODO
 
 ## Changelog
+
+### 20201224 v0.0.2
+
+Add base application and classes.
 
 ### 20201218 v0.0.1
 
 Add SRS
 
-### 20201224 v0.0.2
 
-Add base application and classes.
 

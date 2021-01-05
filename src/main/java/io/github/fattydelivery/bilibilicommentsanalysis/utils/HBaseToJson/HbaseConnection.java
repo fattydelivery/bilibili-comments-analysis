@@ -1,6 +1,6 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.utils.HBaseToJson;
 
-import io.github.fattydelivery.bilibilicommentsanalysis.properties.HBaseProperties;
+import io.github.fattydelivery.bilibilicommentsanalysis.properties.PropertiesUtil;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.*;
@@ -35,9 +35,9 @@ public class HbaseConnection {
         //注意。这里这行目前没有注释掉的，这行和问题3有关系  是要根据自己zookeeper.znode.parent的配置信息进行修改。
 //        configuration.set("zookeeper.znode.parent","/hbase-unsecure"); //与 hbase-site-xml里面的配置信息 zookeeper.znode.parent 一致
 
-        HBaseProperties hbaseProperties = new HBaseProperties();
-        configuration.set("hbase.zookeeper.quorum", hbaseProperties.getIp());  //hbase 服务地址
-        configuration.set("hbase.zookeeper.property.clientPort", hbaseProperties.getPort()); //端口号
+
+        configuration.set("hbase.zookeeper.quorum", PropertiesUtil.getProperty("hbase.ip"));  //hbase 服务地址
+        configuration.set("hbase.zookeeper.property.clientPort", PropertiesUtil.getProperty("hbase.port")); //端口号
         //这里使用的是接口Admin   该接口有一个实现类HBaseAdmin   也可以直接使用这个实现类
         // HBaseAdmin baseAdmin = new HBaseAdmin(configuration);
         con = ConnectionFactory.createConnection(configuration);

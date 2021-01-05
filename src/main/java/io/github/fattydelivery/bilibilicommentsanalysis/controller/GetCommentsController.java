@@ -28,6 +28,7 @@ public class GetCommentsController {
     public String getComment(
             @RequestParam("bvid") String bvid
     ) {
+        // TODO: 前端ajax计时更新
         String cid = Bvid2Cid.getcid(bvid);
         BilibiliApiProperties bilibiliApiProperties = new BilibiliApiProperties();
         Rule rule = new Rule(bilibiliApiProperties.getGetcomments(), new String[] {"oid"},

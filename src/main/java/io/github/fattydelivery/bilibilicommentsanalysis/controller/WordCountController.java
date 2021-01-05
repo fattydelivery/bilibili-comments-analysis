@@ -19,6 +19,7 @@ public class WordCountController {
     public String getAnalysisData(
             @RequestParam("bvid") String bvid
     ) {
+        // TODO:从HBASE中获取数据
         String str = "{\"tom\":\"3\",\"amy\":\"5\"}";
         return str;
     }
