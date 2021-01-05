@@ -48,11 +48,13 @@ public class WordsHBaseBolt implements IRichBolt {
     }
 
     public void execute(Tuple input) {
-        String word = input.getString(0);
-        String count = input.getString(1);
+        String bvid=input.getString(0);
+        String word = input.getString(1);
+        String count = input.getString(2);
         SimpleDateFormat dateRandom = new SimpleDateFormat("yyMMddHHmmss");
         Date date = new Date();
-        String rowkey = dateRandom.format(date);
+        String rm= dateRandom.format(date);
+        String rowkey=bvid+rm;
         byte[] row = Bytes.toBytes(rowkey);
         Put put = new Put(row);
         put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")), Bytes.toBytes("count"), Bytes.toBytes(count));

@@ -19,6 +19,8 @@ import org.apache.storm.topology.IRichBolt;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Tuple;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 public class MyHBaseBolt implements IRichBolt {
@@ -44,10 +46,17 @@ public class MyHBaseBolt implements IRichBolt {
     }
 
     public void execute(Tuple input) {
-        String time = input.getString(0);
-        String count = input.getString(1);
-        byte[] row = Bytes.toBytes(time);
+        String bvid=input.getString(0);
+        String time = input.getString(1);
+        String count = input.getString(2);
+
+        SimpleDateFormat dateRandom = new SimpleDateFormat("yyMMddHHmmss");
+        Date date = new Date();
+        String rowkey = dateRandom.format(date);
+
+        byte[] row = Bytes.toBytes(bvid+rowkey);
         Put put = new Put(row);
+        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.wordcount.name.cf")), Bytes.toBytes("time"), Bytes.toBytes(time));
         put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.wordcount.name.cf")), Bytes.toBytes("count"), Bytes.toBytes(count));
         try {
             tb.put(put);

@@ -28,7 +28,7 @@ public class WordsSplitBolt extends BaseBasicBolt {
 //        collector.emit(new Values(words[8]));
         CutIntoWords cut = new CutIntoWords();
 
-        List<String> resList = cut.seg(words[8]);
+        List<String> resList = cut.seg(words[9]);
 
         Object[] res = resList.toArray();
 
@@ -37,7 +37,7 @@ public class WordsSplitBolt extends BaseBasicBolt {
             if (res[i].equals("！")) {
                 continue;
             } else {
-                collector.emit(new Values(res[i]));
+                collector.emit(new Values(words[0],res[i]));
             }
 
         }
@@ -46,6 +46,6 @@ public class WordsSplitBolt extends BaseBasicBolt {
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
         // 声明本次emit出去的变量名称
-        declarer.declare(new Fields("word"));
+        declarer.declare(new Fields("bvid","word"));
     }
 }
