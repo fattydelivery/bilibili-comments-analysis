@@ -48,14 +48,19 @@ public class GetWordCloud {
                     //获取表中的数据
                     ResultScanner scanner = table.getScanner(new Scan());
 
-                    int flag = 0;
-                    String v = "";
                     Map<String, Integer> map = new HashMap<>();
 
                     //循环输出表中的数据
                     for (Result result : scanner) {
                         List<Cell> listCells = result.listCells();
                         for (Cell cell : listCells) {
+                            //判断是否bvid是否等于rowkey
+                            int len = bvid.length();
+                            String row = new String(cell.getRow());
+                            if(row.length()<len || !row.startsWith(bvid)){
+                                continue;
+                            }
+
                             Get get = new Get(cell.getRow());
                             get.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.wordcount.name.cf")),
                                     Bytes.toBytes("word"));

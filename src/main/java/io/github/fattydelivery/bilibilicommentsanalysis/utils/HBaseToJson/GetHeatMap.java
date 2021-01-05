@@ -41,14 +41,30 @@ public class GetHeatMap {
                     Table table = con.getTable(TableName.valueOf(PropertiesUtil.getProperty("hbase.table.heatmap.name")));
                     ResultScanner scanner = table.getScanner(new Scan());
 
+                    Map<String, Integer> map = new HashMap<>();
+
+                    //循环输出表中的数据
                     for (Result result : scanner) {
                         List<Cell> listCells = result.listCells();
                         for (Cell cell : listCells) {
-                            StringBuffer sb = new StringBuffer()
-                                    .append(Bytes.toString(cell.getRow())).append("\t")
-                                    .append(Bytes.toString(cell.getValue()));
-                            String[] s = sb.toString().split("\t");
-                            tmp.put(Integer.parseInt(s[0]), Integer.parseInt(s[1]));
+                            //判断是否bvid是否等于rowkey
+                            int len = bvid.length();
+                            String row = new String(cell.getRow());
+                            if(row.length()<len || !row.startsWith(bvid)){
+                                continue;
+                            }
+
+                            Get get = new Get(cell.getRow());
+                            get.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")),
+                                    Bytes.toBytes("time"));
+                            get.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")),
+                                    Bytes.toBytes("count"));
+                            Result result1 = table.get(get);
+                            byte[] val1 = result1.getValue(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")),
+                                    Bytes.toBytes("time"));
+                            byte[] val2 = result1.getValue(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")),
+                                    Bytes.toBytes("count"));
+                            tmp.put(Bytes.toInt(val1), Integer.parseInt(Bytes.toString(val2)));
                         }
                     }
                     if (tmp != null && !tmp.isEmpty()) {
