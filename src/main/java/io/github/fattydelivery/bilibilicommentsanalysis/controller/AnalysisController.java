@@ -32,7 +32,7 @@ public class AnalysisController {
             CommentsAnalysisTimerTask task = new CommentsAnalysisTimerTask();
             task.setBvid(bvid);
             Timer timer = new Timer();
-            timer.schedule(task, 2000);
+            timer.schedule(task, 10000);
         }
         return "analysis";
     }

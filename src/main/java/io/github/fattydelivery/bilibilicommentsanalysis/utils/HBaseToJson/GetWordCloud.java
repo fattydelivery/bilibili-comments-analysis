@@ -22,8 +22,6 @@ import java.util.Map;
  * @create: 2020-12-25
  **/
 public class GetWordCloud {
-
-    private static String kv;
     private ArrayList<String> keyArr;
     private ArrayList<Integer> valueArr;
 
@@ -42,7 +40,6 @@ public class GetWordCloud {
     }
 
     public GetWordCloud() {
-        kv = "";
         Connection con = null;
         try {
             con = new HbaseConnection().getConnection();
@@ -83,7 +80,6 @@ public class GetWordCloud {
                         int mapValue = entry.getValue();
                         keyArr.add(mapKey);
                         valueArr.add(mapValue);
-                        kv = kv + "{" + "\"name\":\"" + mapKey + "\",\"value\":" + mapValue + "},";
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
