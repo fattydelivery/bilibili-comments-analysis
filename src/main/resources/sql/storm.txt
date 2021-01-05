@@ -1,0 +1,13 @@
+bin/zkServer.sh start conf/zoo1.cfg
+bin/zkServer.sh start conf/zoo2.cfg
+bin/zkServer.sh start conf/zoo3.cfg
+
+zkServer.sh start
+storm nimbus &
+storm ui &
+storm supervisor &
+storm logviewer &
+storm drpc &
+
+
+storm jar topology-demo.jar com.niit.WordCountTopology -local

@@ -1,0 +1,24 @@
+create 'WordsWC', 'cf'
+
+scan 'WordsWC', { COLUMNS => ['cf:word:toString', 'cf:count:toLong'] }
+
+put 'WordsWC', '201228203323', 'cf:word', 'ahah'
+put 'WordsWC', '201228203323', 'cf:count', '13'
+put 'WordsWC', '201228203333', 'cf:word', 'jiuzhe'
+put 'WordsWC', '201228203333', 'cf:count', '11'
+
+disable 'WordsWC'
+drop 'WordsWC'
+
+
+create 'TimeWC', 'cf'
+
+scan 'TimeWC', { COLUMNS => ['cf:count:toLong'] }
+
+put 'TimeWC', '1', 'cf:count', '1'
+put 'TimeWC', '2', 'cf:count', '13'
+put 'TimeWC', '3', 'cf:count', '7'
+put 'TimeWC', '4', 'cf:count', '12'
+
+disable 'TimeWC'
+drop 'TimeWC'

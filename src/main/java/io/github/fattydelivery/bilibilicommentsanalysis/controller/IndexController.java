@@ -15,7 +15,7 @@ public class IndexController {
 
     @RequestMapping("/")
     public String index() {
-        System.out.println("open index page");
+        System.out.println("[Home page opened]");
         return "index";
     }
 }

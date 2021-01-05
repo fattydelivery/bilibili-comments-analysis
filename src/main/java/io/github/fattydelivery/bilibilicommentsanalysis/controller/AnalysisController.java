@@ -24,9 +24,7 @@ public class AnalysisController {
     public String analysis(
             @RequestParam("bvid") String bvid
     ) {
-        System.out.println("analysis page");
-        System.out.println(bvid);
-        System.out.println(Bvid2Cid.getcid(bvid));
+        System.out.println("[Analysis page opened] bvid:" + bvid);
         // TODO:创建分析任务
         Connection con = DBConnect.getConnection();
         if (!SaveTask.isExist(bvid, con)) {

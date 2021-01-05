@@ -92,9 +92,9 @@ public class RequestData {
             if (i != 0) url = url + "&";
             url = url + params[i] + "=" + values[i];
         }
-        System.out.println(url);
+        // System.out.println(url);
         url = "http://comment.bilibili.com/" + values[0] + ".xml";
-        System.out.println(url);
+        // System.out.println(url);
         Document doc = null;
         try {
             urls = new URL(url);

@@ -23,6 +23,7 @@ public class WordCountController {
         // TODO:从HBASE中获取数据
         // String str = "{\"tom\":\"3\",\"amy\":\"5\"}";
         // return str;
+        System.out.println("[Getwordcount api called] bvid:" + bvid);
         GetWordCloud getWordCloud = new GetWordCloud();
         // System.out.println(getWordCloud.getKV());
         return getWordCloud.getKV();

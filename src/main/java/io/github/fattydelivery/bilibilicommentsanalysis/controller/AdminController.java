@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
     @RequestMapping("/admin")
     public String about() {
-        System.out.println("open admin page");
+        System.out.println("[Admin page opened]");
         return "admin";
     }
 }

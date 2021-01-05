@@ -22,6 +22,7 @@ public class GetInfoController {
             @RequestParam("bvid") String bvid
     ) {
         String cid = Bvid2Cid.getcid(bvid);
+        System.out.println("[GetInfo api called] bvid:" + bvid);
         JSONObject info = new JSONObject();
         info.put("bvid", bvid);
         info.put("cid", cid);

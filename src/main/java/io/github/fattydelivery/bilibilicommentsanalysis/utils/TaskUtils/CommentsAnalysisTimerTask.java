@@ -3,6 +3,7 @@ package io.github.fattydelivery.bilibilicommentsanalysis.utils.TaskUtils;
 import io.github.fattydelivery.bilibilicommentsanalysis.entity.Comment;
 import io.github.fattydelivery.bilibilicommentsanalysis.properties.BilibiliApiProperties;
 import io.github.fattydelivery.bilibilicommentsanalysis.properties.TempFileProperties;
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.KafkaUtils.SendToTopic;
 import io.github.fattydelivery.bilibilicommentsanalysis.utils.MySQLUtils.DBConnect;
 import io.github.fattydelivery.bilibilicommentsanalysis.utils.MySQLUtils.SaveComments;
 import io.github.fattydelivery.bilibilicommentsanalysis.utils.SpiderUtils.Bvid2Cid;
@@ -25,6 +26,7 @@ public class CommentsAnalysisTimerTask extends TimerTask {
     private String bvid, cid = null;
     @Override
     public void run() {
+        System.out.println("TimerTask start -->" + bvid);
         if (this.cid == null) this.cid = Bvid2Cid.getcid(this.bvid);
         BilibiliApiProperties bilibiliApiProperties = new BilibiliApiProperties();
         Rule rule = new Rule(bilibiliApiProperties.getGetcomments(), new String[]{"oid"},
@@ -40,6 +42,7 @@ public class CommentsAnalysisTimerTask extends TimerTask {
         SaveComments.SaveToMySQL(bvid, res, con);
 
         // TODO: 生产
+        SendToTopic.send(bvid, comments);
     }
 
     public void setBvid(String bvid) {

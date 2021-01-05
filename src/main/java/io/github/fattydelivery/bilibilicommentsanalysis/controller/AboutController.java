@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AboutController {
     @RequestMapping("/about")
     public String about() {
-        System.out.println("open about page");
+        System.out.println("[About page opened]");
         return "about";
     }
 }

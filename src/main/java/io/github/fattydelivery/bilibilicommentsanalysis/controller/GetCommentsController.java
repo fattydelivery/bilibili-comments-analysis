@@ -33,7 +33,8 @@ public class GetCommentsController {
         BilibiliApiProperties bilibiliApiProperties = new BilibiliApiProperties();
         Rule rule = new Rule(bilibiliApiProperties.getGetcomments(), new String[] {"oid"},
                 new String[] {cid}, Rule.GET);
-        System.out.println(rule.getUrl());
+        // System.out.println(rule.getUrl());
+        System.out.println("[GetComments api called] bvid:" + bvid);
         Document doc = RequestData.getXml(rule);
         ArrayList<Comment> comments = GetComments.Xml2ArrayList(doc);
         return JSON.toJSON(comments).toString();

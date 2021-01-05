@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class NavController {
     @RequestMapping("/nav")
     public String about() {
-        System.out.println("open nav page");
+        System.out.println("[Nav page opened]");
         return "nav";
     }
 }

@@ -1,0 +1,19 @@
+zkServer.sh start
+
+nohup kafka-server-start.sh ~/app/kafka_2.12-2.6.0/config/server.properties >~/tmp/kafka-logs 2>&1 &
+
+netstat -ntpl
+jps
+
+kafka-topics.sh --zookeeper localhost:2181/kafka --create --topic test-1 --partitions 2 --replication-factor 2
+kafka-topics.sh --bootstrap-server localhost:9092 --create --topic test-2 --partitions 2 --replication-factor 2
+
+kafka-topics.sh --bootstrap-server localhost:9092 --describe
+
+kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic test-\.\+
+
+kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic test-1 --partitions 3
+
+kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic test-2
+
+kafka-topics.sh --bootstrap-server localhost:9092 --list
