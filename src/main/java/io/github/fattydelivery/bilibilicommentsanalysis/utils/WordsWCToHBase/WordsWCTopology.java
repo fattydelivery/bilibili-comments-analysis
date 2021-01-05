@@ -56,8 +56,8 @@ public class WordsWCTopology {
         Config conf = new Config();
 
         Map<String, Object> hbaseConf = new HashMap<String, Object>();
-        hbaseConf.put("hbase.rootdir",PropertiesUtil.getProperty("hbase.rootdir"));
-        hbaseConf.put("hbase.zookeeper.quorum",PropertiesUtil.getProperty("hbase.zookeeper.quorum"));
+        hbaseConf.put("hbase.rootdir", PropertiesUtil.getProperty("hbase.rootdir"));
+        hbaseConf.put("hbase.zookeeper.quorum", PropertiesUtil.getProperty("hbase.zookeeper.quorum"));
         conf.put("hbase.conf", hbaseConf);
         localCluster.submitTopology("word-kafka-storm-hbase", conf, topologyBuilder.createTopology());
     }

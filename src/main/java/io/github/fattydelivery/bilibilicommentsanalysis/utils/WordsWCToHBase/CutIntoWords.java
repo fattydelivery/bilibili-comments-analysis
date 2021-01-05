@@ -37,7 +37,7 @@ public class CutIntoWords {
             System.err.println("词典装载失败:" + ex.getMessage());
         }
     }
-    
+
     public static List<String> seg(String text) {
         List<String> result = new ArrayList<>();
         while (text.length() > 0) {
