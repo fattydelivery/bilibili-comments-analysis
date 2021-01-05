@@ -6,14 +6,15 @@ netstat -ntpl
 jps
 
 kafka-topics.sh --zookeeper localhost:2181/kafka --create --topic test-1 --partitions 2 --replication-factor 2
-kafka-topics.sh --bootstrap-server localhost:9092 --create --topic test-2 --partitions 2 --replication-factor 2
 
-kafka-topics.sh --bootstrap-server localhost:9092 --describe
+kafka-topics.sh --bootstrap-server hadoop0:9092 --create --topic project --partitions 2 --replication-factor 1
 
-kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic test-\.\+
+kafka-topics.sh --bootstrap-server hadoop0:9092 --describe
 
-kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic test-1 --partitions 3
+kafka-topics.sh --bootstrap-server hadoop0:9092 --describe --topic test-\.\+
 
-kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic test-2
+kafka-topics.sh --bootstrap-server hadoop0:9092 --alter --topic test-1 --partitions 3
 
-kafka-topics.sh --bootstrap-server localhost:9092 --list
+kafka-topics.sh --bootstrap-server hadoop0:9092 --delete --topic test-2
+
+kafka-topics.sh --bootstrap-server hadoop0:9092 --list

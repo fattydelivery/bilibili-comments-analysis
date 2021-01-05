@@ -37,8 +37,9 @@ public class SendToTopic {
     }
 
     public static void send(String bvid, ArrayList<Comment> comments) {
+        System.out.println("[Kafka Producer called]");
         for (int i = 0; i < comments.size(); i++) {
-            producer.send(new ProducerRecord<String, String>(PropertiesUtil.getProperty("kafka.topic.name"),
+            producer.send(new ProducerRecord<String, String>(PropertiesUtil.getProperty("kafka.topic.name"), bvid,
                             bvid + "," + comments.get(i).toCsv()),
                     new Callback() {
                         //回调函数，该方法会在Producer收到ack时调用，为异步调用

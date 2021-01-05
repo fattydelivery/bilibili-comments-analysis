@@ -17,9 +17,10 @@ import java.util.ArrayList;
 public class SaveComments {
     public static ArrayList<Comment> CompareRecord(String bvid, ArrayList<Comment> comments, Connection con) {
         ArrayList<Comment> res = null;
-        String sql = "select commentdmid from comments order by commentdmid desc";
+        String sql = "select commentdmid from comments where bvid=? order by commentdmid desc";
         try {
             PreparedStatement prestm = con.prepareStatement(sql);
+            prestm.setString(1, bvid);
             ResultSet resultSet = prestm.executeQuery();
             if (resultSet.next()) {
                 String lastdmid = resultSet.getString(1);
