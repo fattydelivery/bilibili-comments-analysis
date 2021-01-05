@@ -1,5 +1,6 @@
 package io.github.fattydelivery.bilibilicommentsanalysis.controller;
 
+import io.github.fattydelivery.bilibilicommentsanalysis.utils.HBaseToJson.GetWordCloud;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,10 @@ public class WordCountController {
             @RequestParam("bvid") String bvid
     ) {
         // TODO:从HBASE中获取数据
-        String str = "{\"tom\":\"3\",\"amy\":\"5\"}";
-        return str;
+        // String str = "{\"tom\":\"3\",\"amy\":\"5\"}";
+        // return str;
+        GetWordCloud getWordCloud = new GetWordCloud();
+        // System.out.println(getWordCloud.getKV());
+        return getWordCloud.getKV();
     }
 }

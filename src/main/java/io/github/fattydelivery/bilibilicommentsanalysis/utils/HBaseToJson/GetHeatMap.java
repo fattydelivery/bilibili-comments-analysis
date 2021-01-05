@@ -5,6 +5,7 @@ import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.*;
@@ -19,11 +20,17 @@ public class GetHeatMap {
 
     private static String time;
     private static String num;
+    private ArrayList<Integer> timeArr;
+    private ArrayList<Integer> numArr;
 
     public String getKV() {
         if (time.length() > 0) time = time.substring(0, time.length() - 1);
         if (num.length() > 0) num = num.substring(0, num.length() - 1);
-        return time + "," + num;
+        JSONObject json = new JSONObject();
+        for (int i=0; i<timeArr.size(); i++) {
+            json.put(timeArr.get(i).toString(), numArr.get(i));
+        }
+        return json.toString();
     }
 
     public GetHeatMap() {
@@ -34,6 +41,8 @@ public class GetHeatMap {
             Admin admin = con.getAdmin();
             time = "";
             num = "";
+            timeArr = new ArrayList<Integer>();
+            numArr = new ArrayList<Integer>();
             if (admin != null) {
                 try {
                     Table table = con.getTable(TableName.valueOf(PropertiesUtil.getProperty("hbase.table.heatmap.name")));
@@ -58,13 +67,17 @@ public class GetHeatMap {
                             if (tmp.containsKey(i)) {
                                 time += i + " ";
                                 num += tmp.get(i) + " ";
+                                timeArr.add(i);
+                                numArr.add((Integer) tmp.get(i));
                             } else {
                                 time += i + " ";
                                 num += 0 + " ";
+                                timeArr.add(i);
+                                numArr.add(0);
                             }
                         }
-                        System.out.println("time: " + time);
-                        System.out.println("num: " + num);
+                        // System.out.println("time: " + time);
+                        // System.out.println("num: " + num);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
