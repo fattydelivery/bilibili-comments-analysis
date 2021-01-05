@@ -13,10 +13,11 @@ import java.io.IOException;
  **/
 public class testGetHeatMap {
     public static void main(String[] args) {
-        GetHeatMap getHeatMap = new GetHeatMap();
+        String bvid = "BV1zs411S7sz";
+        GetHeatMap getHeatMap = new GetHeatMap(bvid);
         System.out.println(getHeatMap.getKV());
 
-        GetWordCloud getWordCloud = new GetWordCloud();
+        GetWordCloud getWordCloud = new GetWordCloud(bvid);
         System.out.println(getWordCloud.getKV());
     }
 }

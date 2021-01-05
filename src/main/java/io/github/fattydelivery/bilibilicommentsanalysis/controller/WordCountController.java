@@ -24,7 +24,7 @@ public class WordCountController {
         // String str = "{\"tom\":\"3\",\"amy\":\"5\"}";
         // return str;
         System.out.println("[Getwordcount api called] bvid:" + bvid);
-        GetWordCloud getWordCloud = new GetWordCloud();
+        GetWordCloud getWordCloud = new GetWordCloud(bvid);
         // System.out.println(getWordCloud.getKV());
         return getWordCloud.getKV();
     }
