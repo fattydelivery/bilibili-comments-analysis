@@ -42,6 +42,11 @@ public class WordsWCBolt extends BaseBasicBolt {
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             msg.append(entry.getKey() + " = " + entry.getValue()).append(", ");
             collector.emit(new Values(bvid, entry.getKey(), entry.getValue().toString()));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         log.info(msg.toString());

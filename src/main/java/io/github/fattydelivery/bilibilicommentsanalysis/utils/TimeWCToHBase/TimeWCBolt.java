@@ -43,7 +43,7 @@ public class TimeWCBolt extends BaseBasicBolt {
             msg.append(entry.getKey() + " = " + entry.getValue()).append(", ");
             collector.emit(new Values(bvid, entry.getKey(), entry.getValue().toString()));
             try {
-                Thread.sleep(10000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

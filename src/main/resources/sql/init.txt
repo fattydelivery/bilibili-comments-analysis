@@ -1,0 +1,15 @@
+run sql.sql
+
+kafka-topics.sh --bootstrap-server hadoop0:9092 --delete --topic project
+kafka-topics.sh --bootstrap-server hadoop0:9092 --create --topic project --partitions 2 --replication-factor 1
+
+hbase shell
+
+disable 'WordsWC'
+drop 'WordsWC'
+
+disable 'TimeWC'
+drop 'TimeWC'
+
+create 'WordsWC', 'cf'
+create 'TimeWC', 'cf'
