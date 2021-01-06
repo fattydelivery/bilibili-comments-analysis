@@ -34,4 +34,15 @@ public class SaveTask {
             e.printStackTrace();
         }
     }
+
+    public static boolean havaDone(Connection con) {
+        String sql = "select * from tasks";
+        try {
+            PreparedStatement prestm = con.prepareStatement(sql);
+            ResultSet resultSet = prestm.executeQuery();
+            if (resultSet.next()) return true; else return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } return false;
+    }
 }

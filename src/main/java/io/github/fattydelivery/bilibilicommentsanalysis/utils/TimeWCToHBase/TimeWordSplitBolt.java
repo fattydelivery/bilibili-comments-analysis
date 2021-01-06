@@ -26,14 +26,14 @@ public class TimeWordSplitBolt extends BaseBasicBolt {
         int index = words[1].indexOf(".");
 
         // 传递给下一个组件，即WordCountBolt
-        collector.emit(new Values(words[0],words[1].substring(0, index)));
+        collector.emit(new Values(words[0], words[1].substring(0, index)));
 
     }
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
         // 声明本次emit出去的变量名称
-        declarer.declare(new Fields("bvid","word"));
+        declarer.declare(new Fields("bvid", "word"));
     }
 }
 

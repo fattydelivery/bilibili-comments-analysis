@@ -46,7 +46,7 @@ public class SendToTopic {
                         @Override
                         public void onCompletion(RecordMetadata metadata, Exception exception) {
                             if (exception == null) {
-                                System.out.println("success->" + metadata.offset());
+                                System.out.println("[KAFKA PRODUCER] success -> " + metadata.offset());
                             } else {
                                 exception.printStackTrace();
                             }

@@ -53,7 +53,7 @@ public class GetHeatMap {
                             if(row.length()<len || !row.startsWith(bvid)){
                                 continue;
                             }
-
+                            // System.out.println(row);
                             Get get = new Get(cell.getRow());
                             get.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")),
                                     Bytes.toBytes("time"));
@@ -64,7 +64,9 @@ public class GetHeatMap {
                                     Bytes.toBytes("time"));
                             byte[] val2 = result1.getValue(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")),
                                     Bytes.toBytes("count"));
-                            tmp.put(Bytes.toInt(val1), Integer.parseInt(Bytes.toString(val2)));
+                            // System.out.println(val1);
+                            // System.out.println(val2);
+                            tmp.put(Integer.parseInt(Bytes.toString(val1)), Integer.parseInt(Bytes.toString(val2)));
                         }
                     }
                     if (tmp != null && !tmp.isEmpty()) {
@@ -72,6 +74,8 @@ public class GetHeatMap {
                         Object[] obj = set.toArray();
                         Arrays.sort(obj);
                         int max = (int) obj[obj.length - 1];
+                        System.out.println(max);
+                        System.out.println(obj);
                         for (int i = 1; i <= max; i++) {
                             if (tmp.containsKey(i)) {
                                 timeArr.add(i);
@@ -81,6 +85,7 @@ public class GetHeatMap {
                                 numArr.add(0);
                             }
                         }
+                        // System.out.println(timeArr.size());
                         // System.out.println("time: " + time);
                         // System.out.println("num: " + num);
                     }

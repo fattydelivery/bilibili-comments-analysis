@@ -28,7 +28,7 @@ public class TimeWCBolt extends BaseBasicBolt {
     public void execute(Tuple input, BasicOutputCollector collector) {
         // 根据变量名称获得上一个bolt传递过来的数据
         String word = input.getStringByField("word");
-        String bvid=input.getStringByField("bvid");
+        String bvid = input.getStringByField("bvid");
 
         Integer count = map.get(word);
         if (count == null) {
@@ -41,7 +41,7 @@ public class TimeWCBolt extends BaseBasicBolt {
         StringBuilder msg = new StringBuilder();
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             msg.append(entry.getKey() + " = " + entry.getValue()).append(", ");
-            collector.emit(new Values(bvid,entry.getKey(), entry.getValue().toString()));
+            collector.emit(new Values(bvid, entry.getKey(), entry.getValue().toString()));
             try {
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
@@ -55,7 +55,7 @@ public class TimeWCBolt extends BaseBasicBolt {
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("bvid","time", "count"));
+        declarer.declare(new Fields("bvid", "time", "count"));
     }
 }
 

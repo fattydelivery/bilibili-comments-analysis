@@ -27,7 +27,7 @@ public class WordsWCBolt extends BaseBasicBolt {
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
         // 根据变量名称获得上一个bolt传递过来的数据
-        String bvid=input.getStringByField("bvid");
+        String bvid = input.getStringByField("bvid");
         String word = input.getStringByField("word");
 
         Integer count = map.get(word);
@@ -41,7 +41,7 @@ public class WordsWCBolt extends BaseBasicBolt {
         StringBuilder msg = new StringBuilder();
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             msg.append(entry.getKey() + " = " + entry.getValue()).append(", ");
-            collector.emit(new Values(bvid,entry.getKey(), entry.getValue().toString()));
+            collector.emit(new Values(bvid, entry.getKey(), entry.getValue().toString()));
         }
 
         log.info(msg.toString());
@@ -49,6 +49,6 @@ public class WordsWCBolt extends BaseBasicBolt {
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("bvid","word", "count"));
+        declarer.declare(new Fields("bvid", "word", "count"));
     }
 }

@@ -13,7 +13,7 @@ import java.io.IOException;
  **/
 public class testGetHeatMap {
     public static void main(String[] args) {
-        String bvid = "BV1zs411S7sz";
+        String bvid = "BV1Jf4y1y7wQ";
         GetHeatMap getHeatMap = new GetHeatMap(bvid);
         System.out.println(getHeatMap.getKV());
 

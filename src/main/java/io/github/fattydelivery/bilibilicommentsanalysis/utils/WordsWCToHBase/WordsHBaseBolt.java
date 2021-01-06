@@ -37,10 +37,10 @@ public class WordsHBaseBolt implements IRichBolt {
         Configuration conf = HBaseConfiguration.create();
         conf.set("hbase.rootdir", PropertiesUtil.getProperty("hbase.rootdir"));
         // the node of zookeeper
-        conf.set("hbase.zookeeper.quorum",PropertiesUtil.getProperty("hbase.zookeeper.quorum"));
+        conf.set("hbase.zookeeper.quorum", PropertiesUtil.getProperty("hbase.zookeeper.quorum"));
         try {
             Connection conn = ConnectionFactory.createConnection(conf);
-            TableName tableName = TableName.valueOf(PropertiesUtil.getProperty("hbase.table.heatmap.name"));
+            TableName tableName = TableName.valueOf(PropertiesUtil.getProperty("hbase.table.wordcount.name"));
             tb = conn.getTable(tableName);
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,17 +48,17 @@ public class WordsHBaseBolt implements IRichBolt {
     }
 
     public void execute(Tuple input) {
-        String bvid=input.getString(0);
+        String bvid = input.getString(0);
         String word = input.getString(1);
         String count = input.getString(2);
         SimpleDateFormat dateRandom = new SimpleDateFormat("yyMMddHHmmss");
         Date date = new Date();
-        String rm= dateRandom.format(date);
-        String rowkey=bvid+rm;
+        String rm = dateRandom.format(date);
+        String rowkey = bvid + rm;
         byte[] row = Bytes.toBytes(rowkey);
         Put put = new Put(row);
-        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")), Bytes.toBytes("count"), Bytes.toBytes(count));
-        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")), Bytes.toBytes("word"), Bytes.toBytes(word));
+        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.wordcount.name.cf")), Bytes.toBytes("count"), Bytes.toBytes(count));
+        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.wordcount.name.cf")), Bytes.toBytes("word"), Bytes.toBytes(word));
         try {
             tb.put(put);
         } catch (Exception e) {

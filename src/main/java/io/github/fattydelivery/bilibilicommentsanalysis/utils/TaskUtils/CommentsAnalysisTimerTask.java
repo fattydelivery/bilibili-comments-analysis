@@ -26,7 +26,7 @@ public class CommentsAnalysisTimerTask extends TimerTask {
     private String bvid, cid = null;
     @Override
     public void run() {
-        System.out.println("TimerTask start -->" + bvid);
+        System.out.println("[CommentsAnalysisTimerTask] TimerTask start --> " + bvid);
         if (this.cid == null) this.cid = Bvid2Cid.getcid(this.bvid);
         BilibiliApiProperties bilibiliApiProperties = new BilibiliApiProperties();
         Rule rule = new Rule(bilibiliApiProperties.getGetcomments(), new String[]{"oid"},
@@ -42,7 +42,7 @@ public class CommentsAnalysisTimerTask extends TimerTask {
         SaveComments.SaveToMySQL(bvid, res, con);
 
         // TODO: 生产
-        SendToTopic.send(bvid, comments);
+        SendToTopic.send(bvid, res);
     }
 
     public void setBvid(String bvid) {

@@ -1,3 +1,6 @@
+start-dfs.sh
+start-hbase.sh
+
 create 'WordsWC', 'cf'
 
 scan 'WordsWC', { COLUMNS => ['cf:word:toString', 'cf:count:toLong'] }

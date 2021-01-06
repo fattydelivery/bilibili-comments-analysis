@@ -38,7 +38,7 @@ public class MyHBaseBolt implements IRichBolt {
         conf.set("hbase.zookeeper.quorum", PropertiesUtil.getProperty("hbase.zookeeper.quorum"));
         try {
             Connection conn = ConnectionFactory.createConnection(conf);
-            TableName tableName = TableName.valueOf(PropertiesUtil.getProperty("hbase.table.wordcount.name"));
+            TableName tableName = TableName.valueOf(PropertiesUtil.getProperty("hbase.table.heatmap.name"));
             tb = conn.getTable(tableName);
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,7 +46,7 @@ public class MyHBaseBolt implements IRichBolt {
     }
 
     public void execute(Tuple input) {
-        String bvid=input.getString(0);
+        String bvid = input.getString(0);
         String time = input.getString(1);
         String count = input.getString(2);
 
@@ -54,10 +54,10 @@ public class MyHBaseBolt implements IRichBolt {
         Date date = new Date();
         String rowkey = dateRandom.format(date);
 
-        byte[] row = Bytes.toBytes(bvid+rowkey);
+        byte[] row = Bytes.toBytes(bvid + rowkey);
         Put put = new Put(row);
-        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.wordcount.name.cf")), Bytes.toBytes("time"), Bytes.toBytes(time));
-        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.wordcount.name.cf")), Bytes.toBytes("count"), Bytes.toBytes(count));
+        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")), Bytes.toBytes("time"), Bytes.toBytes(time));
+        put.addColumn(Bytes.toBytes(PropertiesUtil.getProperty("hbase.table.heatmap.name.cf")), Bytes.toBytes("count"), Bytes.toBytes(count));
         try {
             tb.put(put);
         } catch (Exception e) {
