@@ -65,6 +65,7 @@ Change `resource/cluster.properties` and `resource/database.properties`
 - [ ] Bvid legal check.
 - [ ] Hbase connection release.
 - [ ] Nginx
+- [ ] Add delay parameter to properities.
 
 ## Changelog
 
