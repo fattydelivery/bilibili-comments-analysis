@@ -18,6 +18,7 @@ README [ <a href="README.md">EN</a> | <a href="README_CN.md">CN</a> ]
     - [MySQL](#mysql)
     - [HBASE](#hbase)
     - [KAFKA](#kafka)
+    - [Properties](#properties)
 - [TODO](#todo)
 - [Changelog](#changelog)
     - [20210106 v1.0.0](#20210106-v100)
@@ -57,6 +58,8 @@ kafka-topics.sh --bootstrap-server hadoop0:9092 --delete --topic project
 kafka-topics.sh --bootstrap-server hadoop0:9092 --create --topic project --partitions 2 --replication-factor 1
 ```
 
+### Properties
+Change `resource/cluster.properties` and `resource/database.properties`
 
 ## TODO
 - [ ] Bvid legal check.
