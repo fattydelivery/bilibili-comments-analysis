@@ -1,3 +1,5 @@
+![bilibili-comments-analysis](https://socialify.git.ci/fattydelivery/bilibili-comments-analysis/image?descriptionEditable=bilibili%20comments-analysis&font=Source%20Code%20Pro&forks=1&issues=1&language=1&logo=https%3A%2F%2Favatars2.githubusercontent.com%2Fu%2F51746996%3Fs%3D200%26v%3D4&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Light)
+
 # Bilibili Comments Analysis Website
 
 Team: <a href="https://github.com/fattydelivery">FattyDelivery</a>
@@ -12,9 +14,10 @@ README [ <a href="README.md">EN</a> | <a href="README_CN.md">CN</a> ]
 <!-- MarkdownTOC levels="2,3" autolink="true" style="unordered" -->
 
 - [Software Requirements Specification](#software-requirements-specification)
-- [MySQL](#mysql)
-- [HBASE](#hbase)
-- [KAFKA](#kafka)
+- [Getting Start](#getting-start)
+    - [MySQL](#mysql)
+    - [HBASE](#hbase)
+    - [KAFKA](#kafka)
 - [TODO](#todo)
 - [Changelog](#changelog)
     - [20210106 v1.0.0](#20210106-v100)
@@ -27,12 +30,13 @@ README [ <a href="README.md">EN</a> | <a href="README_CN.md">CN</a> ]
 
 SRS [ <a href="SRS.md">EN</a> | <a href="SRS_CN.md">CN</a> ]
 
-## MySQL
+## Getting Start
+### MySQL
 
 run `resource/sql/sql.sql`
 
 
-## HBASE
+### HBASE
 
 ```
 hbase shell
@@ -46,7 +50,7 @@ create 'WordsWC', 'cf'
 create 'TimeWC', 'cf'
 ```
 
-## KAFKA
+### KAFKA
 
 ```
 kafka-topics.sh --bootstrap-server hadoop0:9092 --delete --topic project
@@ -54,10 +58,10 @@ kafka-topics.sh --bootstrap-server hadoop0:9092 --create --topic project --parti
 ```
 
 
-
-
-
 ## TODO
+- [ ] Bvid legal check.
+- [ ] Hbase connection release.
+- [ ] Nginx
 
 ## Changelog
 
