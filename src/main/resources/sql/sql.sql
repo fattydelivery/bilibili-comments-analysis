@@ -19,4 +19,5 @@ commenttext varchar(500)
 CREATE TABLE tasks (
 bvid varchar(20) primary key
 );
+set global time_zone = '+8:00';
 show tables;
