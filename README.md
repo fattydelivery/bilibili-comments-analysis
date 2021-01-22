@@ -9,6 +9,8 @@ Team: <a href="https://github.com/fattydelivery">FattyDelivery</a>
 - <a href="https://github.com/hnutc">Krystal(Chang Teng)</a>
 - <a href="https://github.com/ibrothercow">Daniel(Cong Niu)</a>
 
+DEMO: <a href="https://www.bilibili.com/video/BV1ho4y1R7Mg">BV1ho4y1R7Mg</a>
+
 README [ <a href="README.md">EN</a> | <a href="README_CN.md">CN</a> ]
 
 <!-- MarkdownTOC levels="2,3" autolink="true" style="unordered" -->

@@ -35,7 +35,7 @@ IDE: IntelliJ IDEA
 
 Language: Java(JDK 1.8)
 
-Front-end: Tomcat, Springboot, Ajax
+Front-end: Tomcat, Springboot, Ajax, Echarts
 
 Database: MySQL 8.0, HBase 1.2.2
 

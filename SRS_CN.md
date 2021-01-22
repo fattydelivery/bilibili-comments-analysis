@@ -35,7 +35,7 @@ IDE:IntelliJ IDEA
 
 Language: Java(JDK 1.8)
 
-前端: Tomcat, Springboot, Ajax
+前端: Tomcat, Springboot, Ajax, Echarts
 
 数据库: MySQL 8.0, HBase 1.2.2
 
@@ -68,6 +68,7 @@ Language: Java(JDK 1.8)
     
     table: comments
     structure: pk,bvid,comment_time,comment_kind,comment_size,comment_color,timestamp,comment_pool,sender_id,row_id,text
+
     (2) 用户分析日志存储
     table: record
     structure: user_id,timestamp,browser,ip,bvid
